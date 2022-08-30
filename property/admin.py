@@ -9,8 +9,18 @@ class AdminFlat(admin.ModelAdmin):
         'town_district',
         'address',
     )
+    list_display = (
+        'address',
+        'price',
+        'new_building',
+        'construction_year',
+        'town',
+    )
     readonly_fields = (
         'created_at',
+    )
+    list_editable = (
+        'new_building',
     )
 
 
