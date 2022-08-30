@@ -9,6 +9,9 @@ class AdminFlat(admin.ModelAdmin):
         'town_district',
         'address',
     )
+    readonly_fields = (
+        'created_at',
+    )
 
 
 admin.site.register(Flat, AdminFlat)
