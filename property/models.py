@@ -1,6 +1,8 @@
+from distutils.command.build import build
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from phonenumber_field.modelfields import PhoneNumberField
 
 
 class Flat(models.Model):
@@ -78,6 +80,11 @@ class Flat(models.Model):
         User,
         related_name='liked_apartments',
         verbose_name='Пользователи, поставившие лайки',
+        blank=True,
+    )
+    owner_pure_phone =  PhoneNumberField(
+        blank=True,
+        verbose_name='Нормализированный номер телефона владельца',
     )
 
     def __str__(self):
