@@ -74,6 +74,11 @@ class Flat(models.Model):
         verbose_name='Является ли дом новостройкой',
         null=True,
     )
+    likes = models.ManyToManyField(
+        User,
+        related_name='liked_apartments',
+        verbose_name='Пользователи, поставившие лайки',
+    )
 
     def __str__(self):
         return f'{self.town}, {self.address} ({self.price}р.)'

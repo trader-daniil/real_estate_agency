@@ -27,6 +27,9 @@ class AdminFlat(admin.ModelAdmin):
         'rooms_number',
         'has_balcony',
     )
+    raw_id_fields = (
+        'likes',
+    )
 
 admin.site.register(Flat, AdminFlat)
 
