@@ -112,3 +112,23 @@ class Complaint(models.Model):
             f'{self.author.username} пожаловался на '
             f'квартиру по адресу:\n {self.apartment.addres}',
         )
+
+class Owner(models.Model):
+    """Модель владельца квартиры"""
+    full_name = models.CharField(
+        max_length=50,
+        verbose_name='ФИО владельца',
+    )
+    owners_phonenumber = models.CharField(
+        verbose_name='Номер владельца',
+        max_length=20,
+    )
+    owner_pure_phone =  PhoneNumberField(
+        blank=True,
+        verbose_name='Нормализированный номер телефона владельца',
+    )
+    flats = models.ManyToManyField(
+        Flat,
+        related_name='owners',
+        verbose_name='Квартиры владельца',
+    )
