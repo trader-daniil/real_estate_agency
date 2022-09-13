@@ -116,6 +116,7 @@ class Complaint(models.Model):
 class Owner(models.Model):
     """Модель владельца квартиры"""
     full_name = models.CharField(
+        db_index=True,
         max_length=50,
         verbose_name='ФИО владельца',
     )
