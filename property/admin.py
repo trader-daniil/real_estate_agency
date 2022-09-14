@@ -2,6 +2,10 @@ from django.contrib import admin
 
 from .models import Flat, Complaint, Owner
 
+class OwnerInstance(admin.TabularInline):
+    model = Owner.flats.through
+    raw_id_fields = ('owner',)
+
 
 class AdminFlat(admin.ModelAdmin):
     search_fields = (
@@ -29,9 +33,9 @@ class AdminFlat(admin.ModelAdmin):
         'rooms_number',
         'has_balcony',
     )
-    raw_id_fields = (
-        'likes',
-    )
+    raw_id_fields = ('likes',)
+    inlines = (OwnerInstance,)
+    
 
 admin.site.register(Flat, AdminFlat)
 
