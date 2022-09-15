@@ -1,7 +1,6 @@
-from distutils.command.build import build
+from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
-from django.contrib.auth.models import User
 from phonenumber_field.modelfields import PhoneNumberField
 
 
@@ -82,7 +81,7 @@ class Flat(models.Model):
         verbose_name='Пользователи, поставившие лайки',
         blank=True,
     )
-    owner_pure_phone =  PhoneNumberField(
+    owner_pure_phone = PhoneNumberField(
         blank=True,
         verbose_name='Нормализированный номер телефона владельца',
     )
@@ -99,7 +98,7 @@ class Complaint(models.Model):
         related_name='complaints',
         verbose_name='Автор жалобы',
     )
-    apartment = models.ForeignKey(
+    flat = models.ForeignKey(
         Flat,
         on_delete=models.CASCADE,
         related_name='complaints',
@@ -113,6 +112,7 @@ class Complaint(models.Model):
             f'квартиру по адресу:\n {self.apartment.addres}',
         )
 
+
 class Owner(models.Model):
     """Модель владельца квартиры"""
     full_name = models.CharField(
@@ -124,7 +124,7 @@ class Owner(models.Model):
         verbose_name='Номер владельца',
         max_length=20,
     )
-    owner_pure_phone =  PhoneNumberField(
+    owner_pure_phone = PhoneNumberField(
         blank=True,
         verbose_name='Нормализированный номер телефона владельца',
     )

@@ -2,6 +2,7 @@
 
 from django.db import migrations
 
+
 def add_new_building_status(apps, schema_editor):
     """Добавить квартире статус новостройки"""
     Flat = apps.get_model('property', 'Flat')

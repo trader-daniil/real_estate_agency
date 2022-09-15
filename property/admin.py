@@ -1,6 +1,7 @@
 from django.contrib import admin
 
-from .models import Flat, Complaint, Owner
+from .models import Complaint, Flat, Owner
+
 
 class OwnerInstance(admin.TabularInline):
     model = Owner.flats.through
@@ -35,7 +36,7 @@ class AdminFlat(admin.ModelAdmin):
     )
     raw_id_fields = ('likes',)
     inlines = (OwnerInstance,)
-    
+
 
 admin.site.register(Flat, AdminFlat)
 
@@ -43,13 +44,14 @@ admin.site.register(Flat, AdminFlat)
 class AdminComplaint(admin.ModelAdmin):
     list_display = (
         'author',
-        'apartment',
+        'flat',
         'text',
     )
     raw_id_fields = (
         'author',
-        'apartment',
+        'flat',
     )
+
 
 admin.site.register(Complaint, AdminComplaint)
 
@@ -61,5 +63,6 @@ class AdminOwner(admin.ModelAdmin):
         'owner_pure_phone',
     )
     raw_id_fields = ('flats',)
+
 
 admin.site.register(Owner, AdminOwner)

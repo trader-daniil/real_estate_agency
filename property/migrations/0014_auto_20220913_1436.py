@@ -1,5 +1,6 @@
 from django.db import migrations
 
+
 def add_flats_owners_relations(apps, schema_editor):
     Flat = apps.get_model('property', 'Flat')
     Owner = apps.get_model('property', 'Owner')
