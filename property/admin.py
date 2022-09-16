@@ -7,7 +7,7 @@ class OwnerInstance(admin.TabularInline):
     model = Owner.flats.through
     raw_id_fields = ('owner',)
 
-
+@admin.register(Flat)
 class AdminFlat(admin.ModelAdmin):
     search_fields = (
         'town',
@@ -36,9 +36,8 @@ class AdminFlat(admin.ModelAdmin):
     inlines = (OwnerInstance,)
 
 
-admin.site.register(Flat, AdminFlat)
 
-
+@admin.register(Complaint)
 class AdminComplaint(admin.ModelAdmin):
     list_display = (
         'author',
@@ -50,10 +49,7 @@ class AdminComplaint(admin.ModelAdmin):
         'flat',
     )
 
-
-admin.site.register(Complaint, AdminComplaint)
-
-
+@admin.register(Owner)
 class AdminOwner(admin.ModelAdmin):
     list_display = (
         'full_name',
@@ -61,6 +57,3 @@ class AdminOwner(admin.ModelAdmin):
         'pure_phone',
     )
     raw_id_fields = ('flats',)
-
-
-admin.site.register(Owner, AdminOwner)
