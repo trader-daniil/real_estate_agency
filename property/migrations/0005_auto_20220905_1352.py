@@ -7,20 +7,17 @@ from django.db import migrations
 
 def add_old_building_status(apps, schema_editor):
     Flat = apps.get_model('property', 'Flat')
-    old_buildings = Flat.objects.filter(
+    Flat.objects.filter(
         construction_year__lt=2015,
-        new_building=None).all()
-    for flat in old_buildings:
-        flat.new_building = False
-        flat.save()
+        new_building=None,
+    ).update(new_building=False)
+    
 
 def move_backward(apps, schema_editor):
     Flat = apps.get_model('property', 'Flat')
-    old_buildings = Flat.objects.filter(construction_year__lt=2015).all()
-    for flat in old_buildings:
-        flat.new_buildings = None
-        flat.save()
-    
+    Flat.objects.filter(construction_year__lt=2015).update(
+        new_building=None,
+    )
 
 class Migration(migrations.Migration):
 

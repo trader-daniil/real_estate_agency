@@ -6,19 +6,12 @@ from django.db import migrations
 def add_new_building_status(apps, schema_editor):
     """Добавить квартире статус новостройки"""
     Flat = apps.get_model('property', 'Flat')
-    new_buildings = Flat.objects.filter(construction_year__gte= 2015).all()
-    for flat in new_buildings:
-        flat.new_building = True
-        flat.save()
+    Flat.objects.filter(construction_year__gte=2015).update(new_buildings=True)
 
 
 def move_backward(apps, schema_editor):
     Flat = apps.get_model('property', 'Flat')
-    new_buildings = Flat.objects.filter(construction_year__gte= 2015).all()
-    for flat in new_buildings:
-        flat.new_building = None
-        flat.save()
-
+    Flat.objects.filter(construction_year__gte= 2015).update(new_building=None)
 
 class Migration(migrations.Migration):
 
