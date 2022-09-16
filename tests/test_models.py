@@ -26,8 +26,6 @@ class TestPropertyModel(TestCase):
         super().setUpClass()
         cls.user = User.objects.create(username=USERNAME)
         cls.flat = Flat.objects.create(
-            owner=FULL_NAME,
-            owners_phonenumber=PHONENUMBER,
             price=PRICE,
             town=TOWN,
             address=ADDRESS,
@@ -54,8 +52,6 @@ class TestPropertyModel(TestCase):
         Проверяем значения полей модели квартиры.
         """
         flat_fields_values = {
-            'owner': FULL_NAME,
-            'owners_phonenumber': PHONENUMBER,
             'price': PRICE,
             'town': TOWN,
             'address': ADDRESS,

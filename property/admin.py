@@ -20,8 +20,6 @@ class AdminFlat(admin.ModelAdmin):
         'new_building',
         'construction_year',
         'town',
-        'owners_phonenumber',
-        'owner_pure_phone',
     )
     readonly_fields = (
         'created_at',
