@@ -43,7 +43,7 @@ class TestPropertyModel(TestCase):
         )
         cls.owner = Owner.objects.create(
             full_name=FULL_NAME,
-            owners_phonenumber=PHONENUMBER,
+            phonenumber=PHONENUMBER,
         )
         cls.owner.flats.add(cls.flat)
 
@@ -88,7 +88,7 @@ class TestPropertyModel(TestCase):
             FULL_NAME,
         )
         self.assertEqual(
-            owner.owners_phonenumber,
+            owner.phonenumber,
             PHONENUMBER
         )
         self.assertIn(

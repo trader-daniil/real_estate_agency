@@ -108,11 +108,11 @@ class Owner(models.Model):
         max_length=50,
         verbose_name='ФИО владельца',
     )
-    owners_phonenumber = models.CharField(
+    phonenumber = models.CharField(
         verbose_name='Номер владельца',
         max_length=20,
     )
-    owner_pure_phone = PhoneNumberField(
+    pure_phone = PhoneNumberField(
         blank=True,
         verbose_name='Нормализированный номер телефона владельца',
     )
